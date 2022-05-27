@@ -1,12 +1,11 @@
 #아티이윌 수업때 유연수 선생님께 받은 코드입니다
 #copyright by 유연수 teacher.
 
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Jan 23 16:10:02 2020
 
-@author: wdp
-"""
+#데이터 분석 공부할때 참고하면 좋을 코드
+
+
+
 
 import pandas as pd
 
