@@ -1,0 +1,122 @@
+#아티이윌 수업때 유연수 선생님께 받은 코드입니다
+#copyright by 유연수 teacher.
+
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Jan 23 16:10:02 2020
+
+@author: wdp
+"""
+
+import pandas as pd
+
+train = pd.read_csv("D:\\digit-recognizer\\train.csv")
+test = pd.read_csv("D:\\digit-recognizer\\test.csv")
+print(test)
+
+import pandas as pd
+
+train = pd.read_csv("D:\\digit-recognizer\\train.csv")
+test = pd.read_csv("D:\\digit-recognizer\\test.csv")
+
+Y_train = train["label"]
+X_train = train.drop( labels = ["label"], axis = 1)
+#print(train)
+
+X_train = X_train / 255.0
+test = test / 255.0
+
+
+print(X_train.shape)
+
+
+
+예제4.
+
+import pandas as pd
+
+train = pd.read_csv("D:\\digit-recognizer\\train.csv")
+test = pd.read_csv("D:\\digit-recognizer\\test.csv")
+
+Y_train = train["label"]
+X_train = train.drop( labels = ["label"], axis = 1)
+#print(train)
+
+X_train = X_train / 255.0
+test = test / 255.0
+
+X_train = X_train.values.reshape(-1,28,28,1)
+test = test.values.reshape(-1, 28, 28, 1)
+
+print(X_train.shape)
+print(test.shape)
+
+
+예제5. 훈련 데이터의 라벨을 onehot encoding 하세요.
+
+import pandas as pd
+from keras.utils.np_utils import to_categorical
+
+train = pd.read_csv("D:\\digit-recognizer\\train.csv")
+test = pd.read_csv("D:\\digit-recognizer\\test.csv")
+
+Y_train = train["label"]
+X_train = train.drop( labels = ["label"], axis = 1)
+#print(train)
+
+X_train = X_train / 255.0
+test = test / 255.0
+
+X_train = X_train.values.reshape(-1,28,28,1)
+test = test.values.reshape(-1, 28, 28, 1)
+
+#예 2 ---> [0,0,1,0,0,0,0,0,0,0]
+Y_train = to_categorical(Y_train,num_classes=10)
+print(Y_train.shape) #(42000, 10)
+
+
+
+예제6. 훈련 데이터의 일부를 테스트 데이터로 쓸 수 있도록 훈련 데이터를 나누는 코드를 작성한다.
+(오버피팅 확인용)
+from sklearn.model_selection import train_test_split
+random_seed = 2
+
+X_train, X_val, Y_train, Y_val = train_test_split(X_train, Y_train, test_size=0.1, random_state=random_seed)
+
+print(X_train.shape)
+print(X_val.shape)
+print(Y_train.shape)
+print(Y_val.shape)
+
+
+import numpy as np
+import pandas as pd
+from keras.utils.np_utils import to_categorical
+from sklearn.model_selection import train_test_split
+
+train = pd.read_csv("D:\\digit-recognizer\\train.csv")
+test = pd.read_csv("D:\\digit-recognizer\\test.csv")
+
+Y_train = train["label"]
+X_train = train.drop( labels = ["label"], axis = 1)
+#print(train)
+
+X_train = X_train / 255.0
+test = test / 255.0
+
+X_train = X_train.values.reshape(-1,28,28,1)
+test = test.values.reshape(-1, 28, 28, 1)
+
+#예 2 ---> [0,0,1,0,0,0,0,0,0,0]
+Y_train = to_categorical(Y_train,num_classes=10)
+
+random_seed = 2
+
+X_train, X_val, Y_train, Y_val = train_test_split(X_train, Y_train, test_size=0.1, random_state=random_seed)
+
+#train 전체 shape ---->(42000, 10)
+
+print(X_train.shape) #(37800, 28,28, 1)
+print(X_val.shape) #(4200, 28,28,1)
+print(Y_train.shape) #(37800, 10)
+print(Y_val.shape) #(4200,10)
